@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptCrafter v2.0 - أداة صياغة الـ Prompts الاحترافية</title>
+    <title>PromptCrafter - أداة صياغة الـ Prompts الاحترافية</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -26,7 +26,7 @@
             color: var(--text-main);
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
@@ -38,6 +38,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             border: 1px solid var(--border);
+            margin-bottom: 20px;
         }
         h1 {
             text-align: center;
@@ -141,113 +142,39 @@
         .copy-btn:hover {
             background: #34d399;
         }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>PromptCrafter ⚡</h1>
-        <p class="subtitle">المساعد الذكي لتوليد ووصف الصور بالذكاء الاصطناعي</p>
-
-        <div class="form-group">
-            <label for="coreIdea">فكرة التصميم الرئيسية:</label>
-            <input type="text" id="coreIdea" placeholder="مثال: رائد فضاء يشرب القهوة على سطح المريخ">
-        </div>
-
-        <div class="form-group">
-            <label for="style">الستايل الفني (Art Style):</label>
-            <select id="style">
-                <option value="Photorealistic, ultra-detailed, 8k resolution, Unreal Engine 5">واقعي تصويري (Photorealistic 8K)</option>
-                <option value="Anime style, Studio Ghibli, vibrant colors, detailed illustration">أنمي ياباني (Anime / Studio Ghibli)</option>
-                <option value="Cyberpunk aesthetic, glowing neon lights, futuristic city vibe">سايبربانك ونيون (Cyberpunk)</option>
-                <option value="Cinematic movie scene, dramatic lighting, depth of field">سينمائي درامي (Cinematic Film)</option>
-                <option value="3D render, Pixar style, soft lighting, cute character">رسم ثلاثي الأبعاد (3D Pixar Style)</option>
-                <option value="Fantasy concept art, epic composition, magical elements">رسم خيالي وفانتزي (Fantasy Art)</option>
-                <option value="Vector illustration, flat design, clean lines, modern logo style">فيكتور وجرافيك (Vector Flat Art)</option>
-                <option value="Pixel art style, 8-bit retro gaming, detailed pixels">بكسل آرت كلاسيكي (Pixel Art 8-bit)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="camera">زاوية الكاميرا ونوع اللقطة (Camera Angle):</label>
-            <select id="camera">
-                <option value="Eye-level shot, balanced framing">لقطة في مستوى العين (Eye-Level)</option>
-                <option value="Drone aerial view, wide landscape, top-down perspective">لقطة جوية بالطائرة (Drone Aerial View)</option>
-                <option value="Extreme close-up macro shot, intricate detail">لقطة مكبرة تفصيلية (Close-up Shot)</option>
-                <option value="Wide angle shot, expansive scenery">زاوية واسعة جداً (Wide-Angle)</option>
-                <option value="Low angle shot, dramatic hero perspective">منظور من الأسفل للأعلى (Low Angle Hero Shot)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="lighting">الإضاءة والأجواء (Lighting & Atmosphere):</label>
-            <select id="lighting">
-                <option value="Soft studio lighting, volumetric shadows">إضاءة استوديو ناعمة (Studio Light)</option>
-                <option value="Golden hour sunset glow, warm dramatic light">شروق/غروب الشمس (Golden Hour)</option>
-                <option value="Dramatic neon backlight, vibrant contrasting colors">إضاءة نيون قوية (Neon Glow)</option>
-                <option value="Dark moody cinematic lighting, mystery shadow">إضاءة غامضة ومظلمة (Dark Moody)</option>
-                <option value="Natural bright daylight, clear sky">ضوء النهار الطبيعي (Natural Daylight)</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="aspect">أبعاد الصورة (Aspect Ratio):</label>
-            <select id="aspect">
-                <option value="--ar 16:9">عريض سينمائي / يوتيوب (16:9)</option>
-                <option value="--ar 1:1">مربع انستجرام (1:1)</option>
-                <option value="--ar 9:16">طولي ستوري / ريلز / تيك توك (9:16)</option>
-                <option value="--ar 4:3">أبعاد قياسية (4:3)</option>
-            </select>
-        </div>
-
-        <div class="btn-group">
-            <button onclick="generatePrompt()">توليد الـ Prompt الاحترافي 🚀</button>
-            <button class="clear-btn" onclick="clearFields()">مسح 🔄</button>
-        </div>
-
-        <div class="output-section">
-            <div class="output-header">
-                <span>النتيجة جاهزة للنسخ والاستخدام:</span>
-                <button class="copy-btn" onclick="copyResult()">نسخ النص 📋</button>
-            </div>
-            <textarea id="resultText" readonly placeholder="سيظهر الـ Prompt هنا باللغة الإنجليزية..."></textarea>
-        </div>
-    </div>
-
-    <script>
-        function generatePrompt() {
-            let ideaInput = document.getElementById("coreIdea").value.trim();
-            let style = document.getElementById("style").value;
-            let camera = document.getElementById("camera").value;
-            let lighting = document.getElementById("lighting").value;
-            let aspect = document.getElementById("aspect").value;
-
-            if (!ideaInput) {
-                alert("من فضلك اكتب فكرة التصميم في الخانة الأولى!");
-                return;
-            }
-
-            // تجميع العناصر لتوليد وصف دقيق واحترافي
-            let finalPrompt = `${ideaInput}, ${style}, ${camera}, ${lighting}, high quality, masterpiece ${aspect}`;
-
-            document.getElementById("resultText").value = finalPrompt;
+        
+        /* تنسيق قسم الصفحات القانونية والتر تيل */
+        footer {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
         }
-
-        function copyResult() {
-            let copyText = document.getElementById("resultText");
-            if (!copyText.value) {
-                alert("لا يوجد نص لنسخه، قم بتوليد الـ Prompt أولاً!");
-                return;
-            }
-            copyText.select();
-            navigator.clipboard.writeText(copyText.value);
-            alert("تم نسخ الـ Prompt بنجاح! تقدر تحطه في Midjourney أو DALL-E أو Leonardo الآن.");
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
         }
-
-        function clearFields() {
-            document.getElementById("coreIdea").value = "";
-            document.getElementById("resultText").value = "";
+        .footer-links a {
+            color: #38bdf8;
+            text-decoration: none;
+            cursor: pointer;
         }
-    </script>
-</body>
-</html>
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* نافذة منبثقة للصفحات الإضافية (من نحن، سياسة الخصوصية) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1
