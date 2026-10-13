@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptCrafter - أداة صياغة الـ Prompts الاحترافية</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+            color: var(--text-main);
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-color);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: var(--primary-hover);
+        }
+        .output-section {
+            margin-top: 25px;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .output-header span {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        #resultText {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #38bdf8;
+            font-size: 14px;
+            resize: none;
+            height: 90px;
+            outline: none;
+        }
+        .copy-btn {
+            background: #334155;
+            font-size: 13px;
+            padding: 6px 12px;
+            width: auto;
+            margin: 0;
+        }
+        .copy-btn:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>PromptCrafter</h1>
+        <p class="subtitle">اصنع وصف صور الذكاء الاصطناعي (Prompts) باحترافية</p>
+
+        <div class="form-group">
+            <label for="coreIdea">فكرة التصميم أو الموضوع الرئيسي:</label>
+            <input type="text" id="coreIdea" placeholder="مثال: سيارة رياضية حديثة في الصحراء">
+        </div>
+
+        <div class="form-group">
+            <label for="style">الستايل الفني (Style):</label>
+            <select id="style">
+                <option value="Photorealistic, highly detailed, 8k resolution">واقعي جداً (Photorealistic)</option>
+                <option value="Cyberpunk aesthetic, neon lights, futuristic">سايبربانك ونيون (Cyberpunk)</option>
+                <option value="Cinematic lighting, dramatic shadows, movie scene">سينمائي (Cinematic)</option>
+                <option value="3D render, Pixar style, smooth textures, cute">رسم ثلاثي الأبعاد (3D Render)</option>
+                <option value="Oil painting, classical art, masterpiece">لوحة زيتية كلاسيكية (Oil Painting)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="lighting">نوع الإضاءة (Lighting):</label>
+            <select id="lighting">
+                <option value="Soft studio lighting">إضاءة استوديو ناعمة</option>
+                <option value="Golden hour sunlight, warm tones">شروق/غروب الشمس (Golden Hour)</option>
+                <option value="Dramatic neon glowing lights">إضاءة نيون قوية</option>
+                <option value="Moody dark cinematic lighting">إضاءة سينمائية مظلمة</option>
+            </select>
+        </div>
+
+        <button onclick="generatePrompt()">توليد الـ Prompt الاحترافي 🚀</button>
+
+        <div class="output-section">
+            <div class="output-header">
+                <span>النتيجة (باللغة الإنجليزية للذكاء الاصطناعي):</span>
+                <button class="copy-btn" onclick="copyResult()">نسخ النص</button>
+            </div>
+            <textarea id="resultText" readonly placeholder="سيظهر الـ Prompt هنا..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        // قاموس ترجمة بسيط للكلمات الشائعة لتحويل الفكرة إلى الإنجليزية
+        const translations = {
+            "سيارة رياضية حديثة في الصحراء": "modern sports car driving in a desert",
+            "بورتريه لشخص احترافي": "professional corporate headshot portrait",
+            "قطة لطيفة ترتدي نظارة": "cute cat wearing stylish sunglasses",
+            "منزل مستقبلي في الغابة": "futuristic eco-friendly house in a lush forest"
+        };
+
+        function generatePrompt() {
+            let ideaInput = document.getElementById("coreIdea").value.trim();
+            let style = document.getElementById("style").value;
+            let lighting = document.getElementById("lighting").value;
+
+            if (!ideaInput) {
+                alert("من فضلك اكتب فكرة التصميم الأول!");
+                return;
+            }
+
+            // لو الفكرة بالعربي وموجودة في القاموس نترجمها، أو نسيبها زي ما هي ونضيف عليها مصطلحات إنجليزية
+            let translatedIdea = translations[ideaInput] || (ideaInput + " high quality");
+
+            // دمج العناصر لتكوين Prompt احترافي متكامل
+            let finalPrompt = `${translatedIdea}, ${style}, ${lighting}, masterpiece, highly detailed --ar 16:9`;
+
+            document.getElementById("resultText").value = finalPrompt;
+        }
+
+        function copyResult() {
+            let copyText = document.getElementById("resultText");
+            if (!copyText.value) {
+                alert("لا يوجد نص لنسخه!");
+                return;
+            }
+            copyText.select();
+            navigator.clipboard.writeText(copyText.value);
+            alert("تم نسخ الـ Prompt بنجاح! انسخه وضعه في Midjourney أو أي أداة صور.");
+        }
+    </script>
+</body>
+</html>
