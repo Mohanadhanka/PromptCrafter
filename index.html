@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PromptCrafter - صانع الـ Prompts الاحترافي</title>
+    <title>PromptCrafter - أداة صياغة الـ Prompts الاحترافية ودليل الذكاء الاصطناعي</title>
     <style>
         :root {
             --bg: #0f172a;
@@ -30,18 +30,18 @@
             align-items: center;
             min-height: 100vh;
         }
-        .main-box {
+        .main-box, .article-box {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             background: var(--card);
             padding: 20px;
             border-radius: 12px;
             border: 1px solid var(--border);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         h1 {
             text-align: center;
-            font-size: 22px;
+            font-size: 24px;
             margin-bottom: 5px;
         }
         .desc {
@@ -80,6 +80,7 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+            transition: background 0.3s;
         }
         .btn:hover { background: var(--primary-hover); }
         .result-box {
@@ -117,30 +118,67 @@
             text-align: left;
             resize: none;
         }
-        footer {
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            font-size: 12px;
-            color: var(--muted);
-            padding: 10px;
-        }
-        footer a {
+        
+        /* تنسيق المقال التعليمي لجذب أدسنس */
+        .article-box h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
             color: #38bdf8;
-            margin: 0 8px;
-            text-decoration: none;
         }
+        .article-box p, .article-box li {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .article-box ul {
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* المودال والفوتر */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center; align-items: center;
+            padding: 20px; z-index: 1000;
+        }
+        .modal-content {
+            background: var(--card);
+            width: 100%; max-width: 500px;
+            padding: 20px; border-radius: 10px;
+            border: 1px solid var(--border); text-align: right;
+            max-height: 80vh; overflow-y: auto;
+        }
+        .modal-content h2 { margin-bottom: 10px; font-size: 16px; }
+        .modal-content p { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; }
+        .close-btn {
+            background: #ef4444; color: white; border: none;
+            padding: 8px; border-radius: 5px; width: 100%;
+            cursor: pointer; margin-top: 10px; font-size: 13px;
+        }
+        footer {
+            width: 100%; max-width: 650px;
+            text-align: center; font-size: 12px;
+            color: var(--muted); padding: 15px;
+            background: var(--card); border-radius: 12px;
+            border: 1px solid var(--border); margin-bottom: 20px;
+        }
+        footer a { color: #38bdf8; margin: 0 8px; text-decoration: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
+    <!-- الأداة الرئيسية -->
     <div class="main-box">
         <h1>PromptCrafter ⚡</h1>
-        <p class="desc">صانع وصف الصور بالذكاء الاصطناعي</p>
+        <p class="desc">صانع وصف الصور بالذكاء الاصطناعي باحترافية</p>
 
         <div class="field">
             <label>فكرة التصميم الرئيسية:</label>
-            <input type="text" id="idea" placeholder="مثال: سيارة رياضية في الصحراء">
+            <input type="text" id="idea" placeholder="مثال: رائد فضاء يشرب القهوة في الفضاء">
         </div>
 
         <div class="field">
@@ -184,14 +222,56 @@
         </div>
     </div>
 
+    <!-- مقال تعليمي لتحسين قبول أدسنس وزيادة الزوار -->
+    <div class="article-box">
+        <h2>دليلك الشامل لاحتراف كتابة Prompts صور الذكاء الاصطناعي</h2>
+        <p>يُعد توليد الصور بالذكاء الاصطناعي (مثل Midjourney، DALL-E، و Leonardo AI) فناً قائمًا بذاته. كلما كان الوصف الذي تدخله دقيقًا ومفصلاً، كلما كانت النتيجة مذهلة وقريبة لخيالتك.</p>
+        
+        <p><strong>عناصر الوصف الناجح تتضمن عادةً:</strong></p>
+        <ul>
+            <li><strong>الموضوع الأساسي:</strong> تحديد العنصر الرئيسي للرسم بوضوح (شخص، سيارة، مناظر طبيعية).</li>
+            <li><strong>الستايل الفني:</strong> اختيار النمط المرئي (واقعي، أنمي، سايبربانك، أو رسم ثلاثي الأبعاد).</li>
+            <li><strong>الإضاءة:</strong> تحديد نوع ونبرة الإضاءة (إضاءة استوديو، ضوء الغروب، أو إضاءة نيون).</li>
+            <li><strong>أبعاد العرض:</strong> اختيار المقاس المناسب للمنصة التي ستنشر عليها الصورة (مربع، عريض، أو طولي).</li>
+        </ul>
+        <p>استخدم أداة PromptCrafter أعلاه لتوفير الوقت وتكوين أوصاف برمجية جاهزة ومثالية بنقرة واحدة!</p>
+    </div>
+
+    <!-- الفوتر والصفحات القانونية -->
     <footer>
         <p>
-            <a href="#" onclick="alert('PromptCrafter هي أداة لمساعدة المصممين في صياغة أوصاف صور الذكاء الاصطناعي.')">من نحن</a> | 
-            <a href="#" onclick="alert('نحن نحترم خصوصية زوارنا ولا نجمع أي بيانات شخصية.')">سياسة الخصوصية</a> | 
-            <a href="#" onclick="alert('للتواصل: support@promptcrafter.com')">اتصل بنا</a>
+            <a onclick="openModal('aboutModal')">من نحن</a> | 
+            <a onclick="openModal('privacyModal')">سياسة الخصوصية</a> | 
+            <a onclick="openModal('contactModal')">اتصل بنا</a>
         </p>
         <p style="margin-top: 8px;">© 2026 PromptCrafter. جميع الحقوق محفوظة.</p>
     </footer>
+
+    <!-- نوافذ المودال -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <h2>من نحن</h2>
+            <p>موقع PromptCrafter هو منصة مجانية مصممة لمساعدة المصممين وصانعي المحتوى على صياغة أوصاف صور الذكاء الاصطناعي بكل سهولة واحترافية.</p>
+            <button class="close-btn" onclick="closeModal('aboutModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <h2>سياسة الخصوصية</h2>
+            <p>نحن نحترم خصوصية زوارنا. لا نجمع بيانات شخصية، ونستخدم إعلانات Google AdSense لتحسين تجربتك وعرض إعلانات ملائمة.</p>
+            <button class="close-btn" onclick="closeModal('privacyModal')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <h2>اتصل بنا</h2>
+            <p>للتواصل والاستفسارات، يسعدنا مراسلتنا عبر البريد:</p>
+            <p style="color: #38bdf8; font-weight: bold;">support@promptcrafter.com</p>
+            <button class="close-btn" onclick="closeModal('contactModal')">إغلاق</button>
+        </div>
+    </div>
 
     <script>
         function generate() {
@@ -219,6 +299,9 @@
             navigator.clipboard.writeText(txt.value);
             alert("تم النسخ بنجاح!");
         }
+
+        function openModal(id) { document.getElementById(id).style.display = "flex"; }
+        function closeModal(id) { document.getElementById(id).style.display = "none"; }
     </script>
 </body>
 </html>
