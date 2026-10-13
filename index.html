@@ -30,7 +30,7 @@
             align-items: center;
             min-height: 100vh;
         }
-        .main-box, .article-box {
+        .main-box, .article-box, .ad-box {
             width: 100%;
             max-width: 650px;
             background: var(--card);
@@ -38,6 +38,10 @@
             border-radius: 12px;
             border: 1px solid var(--border);
             margin-bottom: 20px;
+        }
+        .ad-box {
+            padding: 10px;
+            text-align: center;
         }
         h1 {
             text-align: center;
@@ -119,7 +123,7 @@
             resize: none;
         }
         
-        /* تنسيق المقال التعليمي لجذب أدسنس */
+        /* تنسيق المقال التعليمي */
         .article-box h2 {
             font-size: 18px;
             margin-bottom: 12px;
@@ -222,7 +226,13 @@
         </div>
     </div>
 
-    <!-- مقال تعليمي لتحسين قبول أدسنس وزيادة الزوار -->
+    <!-- إعلان Native Banner من Adsterra -->
+    <div class="ad-box">
+        <script async="async" data-cfasync="false" src="https://bauval.org/21/b80cc326c848bff094cf189fc57b2f0b"></script>
+        <div id="container-b80cc326c848bff094cf189fc57b2f0b"></div>
+    </div>
+
+    <!-- مقال تعليمي لتحسين قبول الأداة وزيادة الزوار -->
     <div class="article-box">
         <h2>دليلك الشامل لاحتراف كتابة Prompts صور الذكاء الاصطناعي</h2>
         <p>يُعد توليد الصور بالذكاء الاصطناعي (مثل Midjourney، DALL-E، و Leonardo AI) فناً قائمًا بذاته. كلما كان الوصف الذي تدخله دقيقًا ومفصلاً، كلما كانت النتيجة مذهلة وقريبة لخيالتك.</p>
@@ -259,7 +269,7 @@
     <div id="privacyModal" class="modal">
         <div class="modal-content">
             <h2>سياسة الخصوصية</h2>
-            <p>نحن نحترم خصوصية زوارنا. لا نجمع بيانات شخصية، ونستخدم إعلانات Google AdSense لتحسين تجربتك وعرض إعلانات ملائمة.</p>
+            <p>نحن نحترم خصوصية زوارنا. لا نجمع بيانات شخصية، ونستخدم إعلانات لتحسين تجربتك وعرض إعلانات ملائمة.</p>
             <button class="close-btn" onclick="closeModal('privacyModal')">إغلاق</button>
         </div>
     </div>
@@ -303,5 +313,8 @@
         function openModal(id) { document.getElementById(id).style.display = "flex"; }
         function closeModal(id) { document.getElementById(id).style.display = "none"; }
     </script>
+
+    <!-- إعلان Popunder من Adsterra -->
+    <script data-cfasync="false" src="https://abscloud.org/1/720f58c4b29714ee337a7146df15dc80"></script>
 </body>
 </html>
